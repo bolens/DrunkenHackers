@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/code,macos,windows,sublimetext
+# Created by https://www.gitignore.io/api/code,macos,windows,sublimetext,prepros
 
 ### Code ###
 # Visual Studio Code - https://code.visualstudio.com/
@@ -34,6 +34,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+### Prepros ###
+# Config Prepros files to ignore
+prepros.cfg
+prepros-6.config
 
 ### SublimeText ###
 # cache files for sublime text
@@ -89,4 +94,4 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/code,macos,windows,sublimetext
+# End of https://www.gitignore.io/api/code,macos,windows,sublimetext,prepros
