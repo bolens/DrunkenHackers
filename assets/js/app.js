@@ -9,8 +9,8 @@ jQuery.ajaxPrefilter(function(options) {
 let labelsArray = [];
 let label = [];
 function renderLabels() {
-  const queryURL = "http://api.brewerydb.com/v2/search?q=rock&type=beer&key=" + apikey;
-
+  const queryURL = "http://api.brewerydb.com/v2/search?q=magic&p=3&type=beer&key=" + apikey;
+  console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -22,14 +22,14 @@ function renderLabels() {
     $(response.data).each(function(index, val) {
       if (this.hasOwnProperty("labels")){
         labelsArray.push(val);
-    }
+      }
     });
     labelsArray = shuffle(labelsArray);
     label = labelsArray.splice(1, 3);
     $(label).each(function(i, val) {
       let newImage = $('<img>');
       let newTitle = $('<h5>' + label[i].name + '</h5>');
-      newImage.attr('src', label[i].labels.large);
+      newImage.attr('src', label[i].labels.medium);
       $('#img-' + i).append(newImage);
       $('#name-' + i).append(newTitle);
     })
@@ -53,7 +53,6 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
