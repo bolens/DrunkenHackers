@@ -28,7 +28,7 @@ function renderLabels() {
     label = labelsArray.splice(1, 3);
     $(label).each(function(i, val) {
       let newImage = $('<img>');
-      let newTitle = $('<h4>' + label[i].name + '</h4>');
+      let newTitle = $('<h5>' + label[i].name + '</h5>');
       newImage.attr('src', label[i].labels.large);
       $('#img-' + i).append(newImage);
       $('#name-' + i).append(newTitle);
