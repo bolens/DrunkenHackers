@@ -1,47 +1,42 @@
 
 // CORS client work around
 jQuery.ajaxPrefilter(function(options) {
-    if (options.crossDomain && jQuery.support.cors) {
-        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-    }
+  if (options.crossDomain && jQuery.support.cors) {
+    options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+  }
 });
 
+let labelsArray = [];
+let label = [];
 function renderLabels() {
-    const queryURL = "http://api.brewerydb.com/v2/search?q=rock&key=" + apikey;
-    console.log("This is queryURL: " + queryURL);
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-      console.log("This is queryURL: " + queryURL);
-      console.log(response);
-      let labelsArray = [];
-      let $container = $('.card-image');
-      let $name = $('.card-title');
-      $container.empty();
-      $(response.data).each(function(index, val) {
-        if (this.hasOwnProperty("labels")){
-          labelsArray.push(val);
-          console.log(labelsArray);
-          labelsArray = shuffle(labelsArray);
-          console.log(labelsArray);
+  const queryURL = "http://api.brewerydb.com/v2/search?q=rock&type=beer&key=" + apikey;
 
-          let newImage = $('<img>');
-          let newTitle = $('<span>' + this.name + '</span>');
-
-          newImage.attr({
-            'src': this.labels.large,
-            'alt': this.name,
-
-        });
-        $container.append(newImage);
-        $name.append(newTitle);
-      }
-      });
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response) {
+    let $container = $('.card-image');
+    let $name = $('.card-title');
+    $container.empty();
+    $name.empty();
+    $(response.data).each(function(index, val) {
+      if (this.hasOwnProperty("labels")){
+        labelsArray.push(val);
+    }
     });
+    labelsArray = shuffle(labelsArray);
+    label = labelsArray.splice(1, 3);
+    $(label).each(function(i, val) {
+      let newImage = $('<img>');
+      let newTitle = $('<h4>' + label[i].name + '</h4>');
+      newImage.attr('src', label[i].labels.large);
+      $('#img-' + i).append(newImage);
+      $('#name-' + i).append(newTitle);
+    })
+  });
+}
 
-  }
-    renderLabels();
+renderLabels();
 
 function shuffle(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
