@@ -28,13 +28,14 @@ $(document).ready(function() {
   }
 
   // Create new timeline
-  var hackerHero = new TimelineMax({delay:1, onComplete:hideTitle});
+
   var $titles = $('#title');
   var $title = [];
   $title[0] = $('#title-row-1');
   $title[1] = $('#title-row-2');
   $title[2] = $('#title-row-3');
 
+  var hackerHero = new TimelineMax({delay:1, onComplete:hideTitle});
   hackerHero.from($title[0], 1, {opacity:0, left:-500})
     .from($title[1], 1, {opacity:0, left:500})
     .from($title[2], 1, {opacity:0, left:500});
