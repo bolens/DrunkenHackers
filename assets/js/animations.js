@@ -25,25 +25,23 @@ $(document).ready(function() {
     var hidePanel = new TimelineMax({delay:1.5});
     hidePanel.to($panel, 0.5, {opacity:0})
       .to($panel, 1, {height:0, minHeight:0, className:"+=hidden"});
-
   }
 
   // Create new timeline
-  var tl = new TimelineMax({delay:1, onComplete:hideTitle});
+  // var hackerHero = new TimelineMax({delay:1, onComplete:hideTitle});
   var $titles = $('#title');
   var $title = [];
   $title[0] = $('#title-row-1');
   $title[1] = $('#title-row-2');
   $title[2] = $('#title-row-3');
 
-  tl.from($title[0], 1, {opacity:0, left:-500})
-    .from($title[1], 1, {opacity:0, left:500})
-    .from($title[2], 1, {opacity:0, left:500});
+  // hackerHero.from($title[0], 1, {opacity:0, left:-500})
+  //   .from($title[1], 1, {opacity:0, left:500})
+  //   .from($title[2], 1, {opacity:0, left:500});
 
   var $cards = [];
   $('.card').each(function(index, el) {
     $cards[index] = this;
-    console.log($cards[index]);
   });
 
   var cardMove = new TimelineMax({});
