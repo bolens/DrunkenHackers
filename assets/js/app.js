@@ -7,7 +7,7 @@ jQuery.ajaxPrefilter(function(options) {
 });
 
 let labelsArray = [];
-let label = [];
+var label = [];
 function renderLabels() {
   const queryURL = "http://api.brewerydb.com/v2/search?q=magic&p=3&type=beer&key=" + apikey;
   console.log(queryURL);
