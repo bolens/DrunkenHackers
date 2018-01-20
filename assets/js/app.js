@@ -46,8 +46,9 @@ function labelExtractor() {
     results = labelsArray[0].length;
     console.log('Results with labels: ' + results);
     console.log(labelsArray);
-  //  labelsArray = shuffle(labelsArray);
+//    labelsArray = shuffle(labelsArray);
 
+    renderLabels(labelsArray);
     renderLabels(labelsArray);
     renderLabels(labelsArray);
   });

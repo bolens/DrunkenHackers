@@ -8,6 +8,8 @@
     <!-- Stylesheets -->
     <!-- Reset -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script|Kumar+One|Roboto" rel="stylesheet">
     <!-- Font-Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
     <!-- Materialize -->
@@ -26,6 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js" integrity="sha256-+bwq8Vn1b2Nz1mF35GyYCR3WP1zNBq6AX9P+rIR/vg8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js" integrity="sha256-h8XvjWyCJSpIWTvjHOnvHOoYiYNnSzc2DQb6WZCsDb4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" integrity="sha256-/6NS53KuMVgzxQozkNjhDjwcyDmv8Sk52zodr91uoo4=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 
   </head>
   <body>
@@ -34,38 +37,39 @@
         <div class="nav-wrapper">
 
           <ul class="center">
-            <li><a href="#featured">Featured</a></li>
-            <li><a href="#voting">Voting</a></li>
-            <li><a href="#previous">Previous</a></li>
+            <li><a href="#featured" id="featured-link">Featured</a></li>
+            <li><a href="#voting" id="voting-link">- Voting -</a></li>
+            <li><a href="#previous" id="previous-link">Previous</a></li>
           </ul>
 
-          <ul class="right">
+          <!-- <ul class="right">
             <li><a class="btn-floating btn-small waves-effect waves-light white circle"><i class="material-icons"></i></a></li>
-            <li><a class="btn-floating btn-small waves-effect waves-light black circle"><i class="material-icons"></i></a></li>
-          </ul>
+          </ul> -->
         </div>
       </nav>
     </div>
     <section id="hacker-hero">
       <div class="row">
         <div class="col s12">
-          <h1>Awesome Beer</h1>
-          <h2>Brought to you by</h2>
-          <h2>The Drunken Hackers</h2>
+          <div id="title">
+            <h1 id="title-row-1">Awesome Beer</h1>
+            <h2 id="title-row-2">Brought to you by:</h2>
+            <h2 id="title-row-3">The Drunken Hackers</h2>
+          </div>
         </div>
       </div>
     </section>
     <section id="voting">
-      <div class="container">
+      <div class="container" id="voting-container">
         <div class="row">
           <div class="col s12">
             <h3>Voting</h3>
-            <h4>Today's Category</h4>
+            <h4>Today's Category: <span id="current-category">&lt;category&gt;</span></h4>
           </div>
         </div>
-        <div class="row">
+        <div id="card-container" class="row">
           <div class="col s12 m6 l4">
-            <div class="card">
+            <div class="card" data-card="0">
               <div class="card-image" id="img-0">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -75,7 +79,7 @@
             </div>
           </div>
           <div class="col s12 m6 l4">
-            <div class="card">
+            <div class="card" data-card="1">
               <div class="card-image" id="img-1">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -85,7 +89,7 @@
             </div>
           </div>
           <div class="col s12 m6 l4">
-            <div class="card">
+            <div class="card" data-card="2">
               <div class="card-image" id="img-2">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -128,6 +132,17 @@
           </div>
         </div>
 
+=======
+          <div class="col s12">
+            <h4>Current Votes: </h4>
+              <div id="results">
+                <div id="resultscard1"></div>
+                <div id="resultscard2"></div>
+                <div id="resultscard3"></div>
+                </div>
+            </div>
+          </div>
+>>>>>>> c02c3343dbd91682dcc568bc18eb3c6f6cc47591
       </div>
     </section>
     <section id="featured">
@@ -136,29 +151,31 @@
           <div class="col s12">
             <h3>Featured</h3>
           </div>
-          <div class="col s12 m6 push-m6">
-            <div class="row">
-              <div class="col s12 m12">
-                <h4>Beer name</h4>
-                <h5>Category: &lt;category&gt;</h5>
-                <img src="http://via.placeholder.com/350x500" class="hide-on-med-and-up" alt="Beer label">
-                <p>Brewery</p>
-                <p>Location</p>
-                <p>Technical Info</p>
-                <p>Description</p>
+          <div class="col s12 m7 push-m5">
+            <div id="beer-info">
+              <div class="row">
+                <div class="col s12 m12">
+                  <h4>Beer name</h4>
+                  <h5>Category: &lt;category&gt;</h5>
+                  <img src="http://via.placeholder.com/350x500" class="hide-on-med-and-up" alt="Beer label">
+                  <p>Brewery</p>
+                  <p>Location</p>
+                  <p>Technical Info</p>
+                  <p>Description</p>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col s12 m6">
-                <div class="iframe square">Google Maps iframe</div>
-              </div>
-              <div class="col s12 m6">
-                <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Uber</a>
-                <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Lyft</a>
+              <div class="row">
+                <div class="col s12 m6">
+                  <div class="iframe square">Google Maps iframe</div>
+                </div>
+                <div class="col s12 m6">
+                  <!-- <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Uber</a>
+                  <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Lyft</a> -->
+                </div>
               </div>
             </div>
           </div>
-          <div class="col s12 m6 pull-m6 hide-on-small-only">
+          <div class="col s12 m5 pull-m7 hide-on-small-only">
             <img src="http://via.placeholder.com/350x500" alt="Beer label">
           </div>
         </div>
@@ -189,5 +206,7 @@
     <script src="assets/js/api.js"></script>
     <!-- Main js -->
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/voting.js"></script>
+    <script src="assets/js/animations.js"></script>
   </body>
 </html>
