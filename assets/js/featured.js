@@ -51,9 +51,15 @@ function updateFeaturedBeer() {
   $('#featured-brewery').text(featuredBeer.brewery);
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
-  $('#featured-label').attr({
-    src: featuredBeer.label,
-    alt: featuredBeer.name
+  $('#featured-glass').text(featuredBeer.glass);
+  $('#featured-abv').text(featuredBeer.abv);
+  $('#featured-ibu').text(featuredBeer.ibu);
+
+  $('.featured-label').each(function(index, el) {
+    $(this).attr({
+      src: featuredBeer.label,
+      alt: featuredBeer.name
+    });
   });
 
 }
