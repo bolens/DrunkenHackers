@@ -12,11 +12,11 @@ database.ref("/votes").on("value", function(snap){
   $cards[0] = snap.val().card1;
   $cards[1] = snap.val().card2;
   $cards[2] = snap.val().card3;
-  console.log(snap.val());
+  //console.log(snap.val());
 
   voteTotal = $cards[0] + $cards[1] + $cards[2];
-  console.log(voteTotal);
-  console.log((($cards[0] / voteTotal) * 100));
+  //console.log(voteTotal);
+  //console.log((($cards[0] / voteTotal) * 100));
   $card1.css({
     'width': (($cards[0] / voteTotal) * 100) + "%"
   });
