@@ -70,7 +70,6 @@ nav ul a {
 }
 
 section {
-  height: calc(100vh - 64px);
   position: relative;
 }
 h3,
@@ -92,8 +91,6 @@ p:last-of-type {
 }
 .container {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .card {
   padding: 10px 10px 0px 10px;
@@ -119,6 +116,7 @@ p:last-of-type {
 
 #hacker-hero {
   color: #474954;
+  height: calc(100vh - 64px);
 }
 
 #title {
@@ -219,6 +217,7 @@ p:last-of-type {
 }
 #previous {
   padding: 30px;
+  min-height: calc(100vh - 64px);
 }
 @media (max-width: 992px) {
   section {
