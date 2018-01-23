@@ -113,7 +113,17 @@ p:last-of-type {
 .card-title {
   text-align: center;
 }
-
+.featured-tech > li {
+  display: inline-block;
+  width: 25%;
+  float: left;
+  font-weight: 600;
+  text-align: center;
+}
+.featured-tech > li > span {
+  font-weight: 400;
+  display: block;
+}
 #hacker-hero {
   color: #474954;
   height: calc(100vh - 64px);
