@@ -13,6 +13,8 @@ var featuredBeer = {
   glass: "",
   abv: "",
   ibu: "",
+  srm: "",
+  og: "",
   category: "",
   label: ""
 };
@@ -37,12 +39,14 @@ function getBeerInfo(beerID) {
     featuredBeer.glass = response.glass.name;
     featuredBeer.abv = response.abv;
     featuredBeer.ibu = response.ibu;
+    featuredBeer.srm = response.srm;
+    featuredBeer.og = response.og;
     featuredBeer.label = response.labels.large;
 
     updateFeaturedBeer();
 
     // TODO: Add category
-    //console.log(featuredBeer);
+    console.log(featuredBeer);
   });
 }
 
@@ -52,9 +56,48 @@ function updateFeaturedBeer() {
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
   $('#featured-glass').text(featuredBeer.glass);
+<<<<<<< HEAD
   $('#featured-abv').text(featuredBeer.abv);
   $('#featured-ibu').text(featuredBeer.ibu);
   initMap()
+=======
+  if (typeof(featuredBeer.id) != "undefined") {
+    $('.featured-abv').each(function(index, el) {
+      $(this).text(featuredBeer.abv);
+    });
+  } else {
+    $('.featured-abv').each(function(index, el) {
+      $(this).text("N/A");
+    });
+  }
+  if(typeof(featuredBeer.ibu) != "undefined") {
+    $('.featured-ibu').each(function(index, el) {
+      $(this).text(featuredBeer.ibu);
+    });
+  } else {
+    $('.featured-ibu').each(function(index, el) {
+      $(this).text("N/A");
+    });
+  }
+  if(typeof(featuredBeer.srm) != "undefined") {
+    $('.featured-srm').each(function(index, el) {
+      $(this).text(featuredBeer.srm);
+    });
+  } else {
+    $('.featured-srm').each(function(index, el) {
+      $(this).text("N/A");
+    });
+  }
+  if(typeof(featuredBeer.og) != "undefined") {
+    $('.featured-og').each(function(index, el) {
+      $(this).text(featuredBeer.og);
+    });
+  } else {
+    $('.featured-og').each(function(index, el) {
+      $(this).text("N/A");
+    });
+  }
+>>>>>>> c66bf421ed90f6277807a920aa2f8c0083e36afd
 
   $('.featured-label').each(function(index, el) {
     $(this).attr({
