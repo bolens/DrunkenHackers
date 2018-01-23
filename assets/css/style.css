@@ -236,6 +236,10 @@ p:last-of-type {
   margin-top: 0px;
   margin-bottom: 2rem;
 }
+#featured-brewery,
+#featured-location {
+  float: right;
+}
 #featured-description {
   margin: 2rem 0px 0rem;
 }
@@ -265,10 +269,13 @@ p:last-of-type {
     margin-top: -20px;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #beer-info {
     padding: 30px;
   }
+}
+@media (max-width: 600px) {
+
   .card {
     padding: 10px;
   }
