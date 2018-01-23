@@ -3,17 +3,20 @@ $(document).ready(function() {
   var controller = new ScrollMagic.Controller();
 
   // Scroll to functions
-  $("#featured-link").click(function() {
+  $("#featured-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#featured").offset().top - 64
     }, 1000);
   });
-  $("#voting-link").click(function() {
+  $("#voting-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
-  $("#previous-link").click(function() {
+  $("#previous-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#previous").offset().top - 64
     }, 1000);
@@ -28,13 +31,14 @@ $(document).ready(function() {
   }
 
   // Create new timeline
-  var hackerHero = new TimelineMax({delay:1, onComplete:hideTitle});
+
   var $titles = $('#title');
   var $title = [];
   $title[0] = $('#title-row-1');
   $title[1] = $('#title-row-2');
   $title[2] = $('#title-row-3');
 
+  var hackerHero = new TimelineMax({delay:1, onComplete:hideTitle});
   hackerHero.from($title[0], 1, {opacity:0, left:-500})
     .from($title[1], 1, {opacity:0, left:500})
     .from($title[2], 1, {opacity:0, left:500});

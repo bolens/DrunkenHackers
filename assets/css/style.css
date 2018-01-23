@@ -43,6 +43,13 @@ ul.center li a {
     column-count: 3;
     column-gap: 10px;
 }
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
 body {
   color: #474954;
   background-color: #ffffff;
@@ -63,7 +70,6 @@ nav ul a {
 }
 
 section {
-  height: calc(100vh - 64px);
   position: relative;
 }
 h3,
@@ -85,10 +91,9 @@ p:last-of-type {
 }
 .container {
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .card {
+  padding: 10px 10px 0px 10px;
   position: relative;
   -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
@@ -111,6 +116,7 @@ p:last-of-type {
 
 #hacker-hero {
   color: #474954;
+  height: calc(100vh - 64px);
 }
 
 #title {
@@ -157,16 +163,49 @@ p:last-of-type {
   height: 0px;
 }
 #beer-info {
-  margin-top: 30px;
   border: 2px dashed #ffffff;
   padding: 30px 50px;
 }
+#results {
+  position: relative;
+  width: 100%;
+}
+#resultscard1,
+#resultscard2,
+#resultscard3 {
+  float: left;
+  width: 33.33%;
+  height: 10px;
+  padding: 10px;
+
+  transition: width 0.35s ease-in-out;
+}
+.card[data-card="0"] {
+  border: 2px solid #1e3bd4;
+}
+.card[data-card="1"] {
+  border: 2px solid #b12525;
+}
+.card[data-card="2"] {
+  border: 2px solid #009e10;
+}
+#resultscard1 {
+  background-color: #1e3bd4;;
+}
+#resultscard2 {
+  background-color: #b12525;
+}
+#resultscard3 {
+  background-color: #009e10;
+}
+
 #voting-link {
   font-size: 1.5rem;
   margin-top: 0;
 }
 #voting {
   background-color: #ffffff;
+  padding: 30px;
 }
 #voting h4 {
   color: #a2122e;
@@ -174,6 +213,11 @@ p:last-of-type {
 #featured {
   background-color: #474954;
   color: #ffffff;
+  padding: 30px;
+}
+#previous {
+  padding: 30px;
+  min-height: calc(100vh - 64px);
 }
 @media (max-width: 992px) {
   section {
@@ -196,8 +240,4 @@ p:last-of-type {
   ul.center {
 
   }
-
-
-
-
 }
