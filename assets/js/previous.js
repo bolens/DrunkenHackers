@@ -14,7 +14,7 @@ $.ajax({
   method: "GET"
 }).done(function(response) {
   console.log(response)
-  $("#prevWinner").html("<a href='#' id='prevBeer'>" + response.data.name + "</a>")
+  $("#prevWinner").append("<a href='#' id='prevBeer'>" + response.data.name + "</a>")
   featuredBeer.location.lat = response.data.breweries[0].locations[0].latitude;
   featuredBeer.location.lon = response.data.breweries[0].locations[0].longitude;
   $("#prevBeer").on("click", function(event){
