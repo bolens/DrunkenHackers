@@ -54,6 +54,7 @@ function updateFeaturedBeer() {
   $('#featured-glass').text(featuredBeer.glass);
   $('#featured-abv').text(featuredBeer.abv);
   $('#featured-ibu').text(featuredBeer.ibu);
+  initMap()
 
   $('.featured-label').each(function(index, el) {
     $(this).attr({
