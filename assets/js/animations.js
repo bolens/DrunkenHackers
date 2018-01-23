@@ -3,17 +3,20 @@ $(document).ready(function() {
   var controller = new ScrollMagic.Controller();
 
   // Scroll to functions
-  $("#featured-link").click(function() {
+  $("#featured-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#featured").offset().top - 64
     }, 1000);
   });
-  $("#voting-link").click(function() {
+  $("#voting-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
-  $("#previous-link").click(function() {
+  $("#previous-link").click(function(e) {
+    e.preventDefault();
     $('html, body').animate({
       scrollTop: $("#previous").offset().top - 64
     }, 1000);
