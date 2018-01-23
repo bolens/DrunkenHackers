@@ -56,6 +56,7 @@ function updateFeaturedBeer() {
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
   $('#featured-glass').text(featuredBeer.glass);
+  initMap();
   if (typeof(featuredBeer.id) != "undefined") {
     $('.featured-abv').each(function(index, el) {
       $(this).text(featuredBeer.abv);
@@ -99,7 +100,7 @@ function updateFeaturedBeer() {
       alt: featuredBeer.name
     });
   });
-
+  
 }
 
 getBeerInfo(featuredBeer.id);
