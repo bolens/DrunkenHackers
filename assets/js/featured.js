@@ -56,11 +56,10 @@ function updateFeaturedBeer() {
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
   $('#featured-glass').text(featuredBeer.glass);
-<<<<<<< HEAD
   $('#featured-abv').text(featuredBeer.abv);
   $('#featured-ibu').text(featuredBeer.ibu);
   initMap()
-=======
+
   if (typeof(featuredBeer.id) != "undefined") {
     $('.featured-abv').each(function(index, el) {
       $(this).text(featuredBeer.abv);
@@ -97,7 +96,7 @@ function updateFeaturedBeer() {
       $(this).text("N/A");
     });
   }
->>>>>>> c66bf421ed90f6277807a920aa2f8c0083e36afd
+
 
   $('.featured-label').each(function(index, el) {
     $(this).attr({
