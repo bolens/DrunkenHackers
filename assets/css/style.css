@@ -225,6 +225,29 @@ p:last-of-type {
   color: #ffffff;
   padding: 30px;
 }
+#featured h4,
+#featured h5 {
+  text-align: center;
+}
+#featured h4 {
+  margin-bottom: 0px;
+}
+#featured h5 {
+  margin-top: 0px;
+  margin-bottom: 2rem;
+}
+#featured-brewery,
+#featured-location {
+  float: right;
+}
+#featured-description {
+  margin: 2rem 0px 0rem;
+}
+#featured-name {
+  font-family: 'Kumar One', cursive;
+  font-size: 1.5rem;
+}
+
 #previous {
   padding: 30px;
   min-height: calc(100vh - 64px);
@@ -246,10 +269,13 @@ p:last-of-type {
     margin-top: -20px;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #beer-info {
     padding: 30px;
   }
+}
+@media (max-width: 600px) {
+
   .card {
     padding: 10px;
   }
