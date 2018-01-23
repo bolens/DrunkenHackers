@@ -16,38 +16,38 @@ ul.center li {
     float: none;
 }
 ul.center li a {
-    display: inline-block;
+  display: inline-block;
 }
 .btn-small {
-    height: 24px;
-    line-height: 24px;
-    padding: 0 0.5rem;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 0.5rem;
 }
 .btn-small.circle {
-    width: 24px;
+  width: 24px;
 }
 
 .iframe {
-    background-color: #ccc;
-    position: relative;
-    padding-bottom: 65.25%;
-    padding-top: 30px;
-    height: 0;
-    overflow: hidden;
+  background-color: #ccc;
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
 }
 .iframe.square {
-    padding-bottom: 75%;
+  padding-bottom: 75%;
 }
 
 .list-3-col {
-    column-count: 3;
-    column-gap: 10px;
+  column-count: 3;
+  column-gap: 10px;
 }
 
 .clearfix:after {
-    content:" ";
-    display:block;
-    clear:both;
+  content:" ";
+  display:block;
+  clear:both;
 }
 
 body {
@@ -113,7 +113,17 @@ p:last-of-type {
 .card-title {
   text-align: center;
 }
-
+.featured-tech > li {
+  display: inline-block;
+  width: 25%;
+  float: left;
+  font-weight: 600;
+  text-align: center;
+}
+.featured-tech > li > span {
+  font-weight: 400;
+  display: block;
+}
 #hacker-hero {
   color: #474954;
   height: calc(100vh - 64px);
@@ -236,8 +246,21 @@ p:last-of-type {
     margin-top: -20px;
   }
 }
-@media (max-width: 768px) {
-  ul.center {
-
+@media (max-width: 600px) {
+  #beer-info {
+    padding: 30px;
+  }
+  .card {
+    padding: 10px;
+  }
+  .card:after {
+    content:" ";
+    display:block;
+    clear:both;
+  }
+  .card-image,
+  .card-content {
+    float: left;
+    width: 50%;
   }
 }
