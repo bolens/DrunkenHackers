@@ -50,6 +50,10 @@ ul.center li a {
   clear:both;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   color: #474954;
   background-color: #ffffff;
@@ -146,6 +150,13 @@ p:last-of-type {
   font-weight: 400;
   display: block;
 }
+.prevBeer {
+  color: #a2122e;
+  font-size: 1.5rem;
+  display: block;
+  line-height: 1.75rem;
+}
+
 #hacker-hero {
   color: #474954;
   height: calc(100vh - 64px);
