@@ -14,14 +14,14 @@ let label = [];
 let page = 1;
 function labelExtractor() {
   const queryURL = "http://api.brewerydb.com/v2/beers?&hasLabels=Y&withBreweries=Y&key=" + apikey;
-  console.log(queryURL);
+  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response) {
     numberOfPages = response.numberOfPages;
-    console.log('Number of pages: ' + numberOfPages);
-    console.log('Total results: ' + response.totalResults);
+    // console.log('Number of pages: ' + numberOfPages);
+    // console.log('Total results: ' + response.totalResults);
 
 /*    for ( page ; page < numberOfPages; page++) {
 
@@ -44,8 +44,8 @@ function labelExtractor() {
     labelsArray.push(response.data);
 
     results = labelsArray[0].length;
-    console.log('Results with labels: ' + results);
-    console.log(labelsArray);
+    // console.log('Results with labels: ' + results);
+    // console.log(labelsArray);
 //    labelsArray = shuffle(labelsArray);
 
     renderLabels(labelsArray);
@@ -67,13 +67,13 @@ function renderLabels(array) {
   $container.empty();
   $name.empty();
 
-  console.log(array);
+  // console.log(array);
 
    label = array[0].splice(0, 3);
-   console.log(label);
+   // console.log(label);
    labelDiscardArray.push(label);
-   console.log(labelDiscardArray);
-   console.log(array);
+   // console.log(labelDiscardArray);
+   // console.log(array);
 
    $(label).each(function(i, val) {
      let newImage = $('<img>');
