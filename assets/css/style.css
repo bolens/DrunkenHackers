@@ -152,6 +152,9 @@ p:last-of-type {
 }
 .prevBeer {
   color: #a2122e;
+  font-size: 1.5rem;
+  display: block;
+  line-height: 1.75rem;
 }
 
 #hacker-hero {

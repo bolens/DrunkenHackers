@@ -36,7 +36,7 @@ $('#prevWinner').on('click', '.prevBeer', function(e) {
 });
 
 function loadFeatured(that) {
-  console.log($(that));
+  //console.log($(that));
   var beerID = $(that).data('beer-id');
   getBeerInfo(beerID);
 }

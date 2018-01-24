@@ -29,7 +29,7 @@ function getBeerInfo(beerID) {
     method: "GET"
   }).done(function(response) {
     response = response.data;
-    console.log(response);
+    //console.log(response);
     featuredBeer.name = response.name;
     featuredBeer.style = response.style.name;
     featuredBeer.brewery = response.breweries[0].name;
@@ -64,7 +64,7 @@ function updateFeaturedBeer() {
   if (featuredBeer.glass) {
     $('#featured-glass').text(featuredBeer.glass);
   } else {
-    $('#featured-glass').parent().toggleClass('hidden');;
+    $('#featured-glass').parent().toggleClass('hidden');
   }
 
   $('#featured-abv').text(featuredBeer.abv);
