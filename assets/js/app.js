@@ -25,14 +25,14 @@ let databaseOne = firebase.database();
 
 function beerData() {
   const queryURL = "http://api.brewerydb.com/v2/beers?&hasLabels=Y&withBreweries=Y&key=" + apikey;
-  console.log(queryURL);
+  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response) {
     numberOfPages = response.numberOfPages;
-    console.log('Number of pages: ' + numberOfPages);
-    console.log('Total results: ' + response.totalResults);
+    // console.log('Number of pages: ' + numberOfPages);
+    // console.log('Total results: ' + response.totalResults);
 
     let $container = $('.card-image');
     let $name = $('.card-title');
@@ -78,6 +78,7 @@ function labelsDisplay(array) {
   let $name = $('.card-title');
   $container.empty();
   $name.empty();
+
   $('#current-category').empty();
   console.log(array);
 
