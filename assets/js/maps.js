@@ -1,5 +1,7 @@
 function initMap() {
-  var myLatLng = {lat: featuredBeer.location.lat, lng: featuredBeer.location.lon};
+
+  var myLatLng = {lat: parseFloat(featuredBeer.location.lat), lng: parseFloat(featuredBeer.location.lon)};
+
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,

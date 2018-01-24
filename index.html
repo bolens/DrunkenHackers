@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js" integrity="sha256-h8XvjWyCJSpIWTvjHOnvHOoYiYNnSzc2DQb6WZCsDb4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" integrity="sha256-/6NS53KuMVgzxQozkNjhDjwcyDmv8Sk52zodr91uoo4=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
   </head>
   <body>
     <div class="navbar-fixed">
@@ -116,39 +116,41 @@
       <div class="container">
         <div class="row">
           <div class="col s12">
-            <h3>Featured</h3>
+            <h3 id="featured-title">Featured</h3>
           </div>
           <div class="col s12 m7 push-m5">
             <div id="beer-info">
               <div class="row">
                 <div class="col s12 m12">
-                  <h4 id="featured-name">&lt;Beer Name&gt;</h4>
-                  <h5>Category: &lt;category&gt;</h5>
+                  <h4>Beer Name: <span id="featured-name">&lt;Name&gt;</span></h4>
+                  <h5>Category: <span id=featured-category>&lt;category&gt;</span></h5>
                   <div class="hide-on-med-and-up">
-                    <img class="featured-label">
-                    <p>
-                      <ul class="featured-tech clearfix">
-                        <li>
-                          ABV<span class="featured-abv"></span>
-                        </li>
-                        <li>
-                          IBU<span class="featured-ibu"></span>
-                        </li>
-                        <li>
-                          SRM<span class="featured-srm"></span>
-                        </li>
-                        <li>
-                          OG<span class="featured-og"></span>
-                        </li>
-                      </ul>
-                    </p>
+                    <div>
+                      <img class="featured-label">
+                      <p>
+                        <ul class="featured-tech clearfix">
+                          <li>
+                            ABV<span class="featured-abv"></span>
+                          </li>
+                          <li>
+                            IBU<span class="featured-ibu"></span>
+                          </li>
+                          <li>
+                            SRM<span class="featured-srm"></span>
+                          </li>
+                          <li>
+                            OG<span class="featured-og"></span>
+                          </li>
+                        </ul>
+                      </p>
+                    </div>
                   </div>
-                  <p id="featured-brewery">&lt;Brewery&gt;</p>
-                  <p id="featured-location">Location</p>
+                  <p class="clearfix">Brewery: <span id="featured-brewery">&lt;Name&gt;</span></p>
+                  <p class="clearfix">Location: <span id="featured-location">&lt;City, State&gt;</p>
                   <p>
-                    Glass Type: <span id="featured-glass"></span>
+                    Serve in a <span id="featured-glass"></span>.
                   </p>
-                  <p id="featured-description">Description</p>
+                  <p id="featured-description">&lt;Description&gt;</p>
                 </div>
               </div>
               <div class="row">
@@ -163,23 +165,25 @@
             </div>
           </div>
           <div class="col s12 m5 pull-m7 hide-on-small-only">
-            <img class="featured-label">
-            <p>
-              <ul class="featured-tech clearfix">
-                <li>
-                  ABV<span class="featured-abv"></span>
-                </li>
-                <li>
-                  IBU<span class="featured-ibu"></span>
-                </li>
-                <li>
-                  SRM<span class="featured-srm"></span>
-                </li>
-                <li>
-                  OG<span class="featured-og"></span>
-                </li>
-              </ul>
-            </p>
+            <div id="label">
+              <img class="featured-label">
+              <p>
+                <ul class="featured-tech clearfix">
+                  <li>
+                    ABV<span class="featured-abv"></span>
+                  </li>
+                  <li>
+                    IBU<span class="featured-ibu"></span>
+                  </li>
+                  <li>
+                    SRM<span class="featured-srm"></span>
+                  </li>
+                  <li>
+                    OG<span class="featured-og"></span>
+                  </li>
+                </ul>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -205,7 +209,7 @@
         </div>
       </div>
     </section>
-
+    
     <script src="assets/js/api.js"></script>
     <script src="assets/js/config.js"></script>
     <!-- Main js -->
@@ -215,10 +219,5 @@
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/previous.js"></script>
     <script src="assets/js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
-
-
-
-
   </body>
 </html>

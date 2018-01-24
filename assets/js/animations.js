@@ -53,17 +53,22 @@ $(document).ready(function() {
     .from($cards[1], 0.5, {top: 100})
     .from($cards[2], 0.5, {top: 100});
 
+  var featuredBeer = new TimelineMax({});
+  featuredBeer.from($('#featured-title'), 0.5, {opacity: 0})
+    .from($('#label'), 0.5, {opacity: 0})
+    .from($('#beer-info'), 0.5, {opacity: 0});
+
   new ScrollMagic.Scene({triggerElement: "#voting", duration: 250, tweenChanges: true})
     .setTween()
-    .addIndicators({name: "Voting Section"})
+    //.addIndicators({name: "Voting Section"})
     .addTo(controller);
   new ScrollMagic.Scene({triggerElement: "#card-container", duration: 10, tweenChanges: true})
     .setTween(cardMove)
-    .addIndicators({name: "Voting Cards"})
+    //.addIndicators({name: "Voting Cards"})
     .addTo(controller);
-  new ScrollMagic.Scene({triggerElement: "#featured", duration: 250, tweenChanges: true})
-    .setTween()
-    .addIndicators({name: "Featured Section"})
+  new ScrollMagic.Scene({triggerElement: "#featured", duration: 150, tweenChanges: true})
+    .setTween(featuredBeer)
+    //.addIndicators({name: "Featured Section"})
     .addTo(controller);
   new ScrollMagic.Scene({triggerElement: "#previous", duration: 250, tweenChanges: true})
     .setTween()

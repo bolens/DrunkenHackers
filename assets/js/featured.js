@@ -58,7 +58,8 @@ function updateFeaturedBeer() {
   $('#featured-glass').text(featuredBeer.glass);
   $('#featured-abv').text(featuredBeer.abv);
   $('#featured-ibu').text(featuredBeer.ibu);
-  initMap()
+
+  initMap();
 
   if (typeof(featuredBeer.id) != "undefined") {
     $('.featured-abv').each(function(index, el) {
@@ -104,7 +105,7 @@ function updateFeaturedBeer() {
       alt: featuredBeer.name
     });
   });
-
+  
 }
 
 getBeerInfo(featuredBeer.id);
