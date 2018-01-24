@@ -1,5 +1,7 @@
+var latestFeatured;
+
 var featuredBeer = {
-  id: "oeGSxs",
+  id: "",
   name: "",
   style: "",
   brewery: "",
@@ -27,7 +29,7 @@ function getBeerInfo(beerID) {
     method: "GET"
   }).done(function(response) {
     response = response.data;
-    //console.log(response);
+    console.log(response);
     featuredBeer.name = response.name;
     featuredBeer.style = response.style.name;
     featuredBeer.brewery = response.breweries[0].name;
@@ -36,7 +38,11 @@ function getBeerInfo(beerID) {
     featuredBeer.location.city = response.breweries[0].locations[0].locality;
     featuredBeer.location.state = response.breweries[0].locations[0].region;
     featuredBeer.description = response.description;
-    featuredBeer.glass = response.glass.name;
+    if (response.glass) {
+      featuredBeer.glass = response.glass.name;
+    } else {
+      featuredBeer.glass = "";
+    }
     featuredBeer.abv = response.abv;
     featuredBeer.ibu = response.ibu;
     featuredBeer.srm = response.srm;
@@ -55,7 +61,12 @@ function updateFeaturedBeer() {
   $('#featured-brewery').text(featuredBeer.brewery);
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
-  $('#featured-glass').text(featuredBeer.glass);
+  if (featuredBeer.glass) {
+    $('#featured-glass').text(featuredBeer.glass);
+  } else {
+    $('#featured-glass').parent().toggleClass('hidden');;
+  }
+
   $('#featured-abv').text(featuredBeer.abv);
   $('#featured-ibu').text(featuredBeer.ibu);
 
@@ -107,5 +118,3 @@ function updateFeaturedBeer() {
   });
 
 }
-
-getBeerInfo(featuredBeer.id);
