@@ -52,7 +52,7 @@ function getBeerInfo(beerID) {
     updateFeaturedBeer();
 
     // TODO: Add category
-    console.log(featuredBeer);
+    //console.log(featuredBeer);
   });
 }
 
@@ -62,7 +62,7 @@ function updateFeaturedBeer() {
   $('#featured-location').text(featuredBeer.location.city + ", " + featuredBeer.location.state);
   $('#featured-description').text(featuredBeer.description);
   if (featuredBeer.glass) {
-    $('#featured-glass').text(featuredBeer.glass);
+    $('#featured-glass').text(featuredBeer.glass).parent().removeClass('hidden');
   } else {
     $('#featured-glass').parent().toggleClass('hidden');
   }

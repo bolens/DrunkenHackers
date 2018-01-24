@@ -3,14 +3,14 @@ var prevWinners = ["qbsiWU","thTbY7"];
 function renderPrevWinners() {
   $(prevWinners).each(function(index, el) {
     var queryURL = "http://api.brewerydb.com/v2//beer/";
-    console.log(prevWinners[index]);
+    //console.log(prevWinners[index]);
     queryURL = queryURL + prevWinners[index] + "?withBreweries=y&key=" + apikey;
     $.ajax({
       url: queryURL,
       method: "GET"
     }).done(function(response) {
       response = response.data;
-      console.log(response);
+      //console.log(response);
       var newListItem = $('<li>');
       var newLink = $('<a>');
       newLink.addClass('prevBeer')
