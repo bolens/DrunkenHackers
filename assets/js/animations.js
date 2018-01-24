@@ -21,6 +21,12 @@ $(document).ready(function() {
       scrollTop: $("#previous").offset().top - 64
     }, 1000);
   });
+  $("#to-top").click(function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+      scrollTop: $("#voting").offset().top - 64
+    }, 1000);
+  });
 
   // Function to hide intro title
   function hideTitle() {
