@@ -105,7 +105,7 @@ function updateFeaturedBeer() {
       alt: featuredBeer.name
     });
   });
-  
+
 }
 
 getBeerInfo(featuredBeer.id);

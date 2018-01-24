@@ -92,6 +92,28 @@ p:last-of-type {
 .container {
   position: relative;
 }
+.overlay-logo {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+.overlay-logo:hover::before,
+.overlay-logo:focus::before {
+  // Add "To top"
+}
+.overlay-logo:hover::after,
+.overlay-logo:focus::after {
+  // Add arrow
+}
+.overlay-logo img {
+  width: 55px;
+  vertical-align: middle;
+  transition: scale .55s ease-in-out;
+}
+.overlay-logo:hover img,
+.overlay-logo:focus img {
+  transform: scale(1.1);
+}
 .card {
   padding: 10px 10px 0px 10px;
   position: relative;
@@ -253,6 +275,9 @@ p:last-of-type {
   min-height: calc(100vh - 64px);
 }
 @media (max-width: 992px) {
+  nav .brand-logo {
+    left: 5%;
+  }
   section {
     height: auto;
     min-height: calc(100vh - 64px);
@@ -275,7 +300,12 @@ p:last-of-type {
   }
 }
 @media (max-width: 600px) {
-
+  nav .brand-logo {
+    display: none;
+  }
+  .featured-tech {
+    margin-bottom: 1rem;
+  }
   .card {
     padding: 10px;
   }
