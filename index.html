@@ -29,6 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js" integrity="sha256-h8XvjWyCJSpIWTvjHOnvHOoYiYNnSzc2DQb6WZCsDb4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" integrity="sha256-/6NS53KuMVgzxQozkNjhDjwcyDmv8Sk52zodr91uoo4=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
   </head>
   <body>
     <div class="navbar-fixed">
@@ -196,19 +197,19 @@
         </div>
         <div class="row">
           <div class="col s12">
-            <ul class="list-3-col">
+            <ul class="list-3-col" id="prevWinner">
+              <li></li>
+              <!-- <li>Item</li>
               <li>Item</li>
               <li>Item</li>
               <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
+              <li>Item</li> -->
             </ul>
           </div>
         </div>
       </div>
     </section>
-
+    
     <script src="assets/js/api.js"></script>
     <script src="assets/js/config.js"></script>
     <!-- Main js -->
@@ -216,9 +217,7 @@
     <script src="assets/js/featured.js"></script>
     <script src="assets/js/voting.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script src="assets/js/previous.js"></script>
     <script src="assets/js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
-
-
   </body>
 </html>
