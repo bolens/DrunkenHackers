@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="countdown">
+
+</div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/moment-duration-format@2.2.1/lib/moment-duration-format.min.js"></script>
+
+  <script type="text/javascript">
+    console.log(moment().format('dddd MMMM Do YYYY, h:mm:ss a'));
+    let now = Date();
+    console.log(now);
+    console.log(moment().endOf('minute'));
+
+function startTimer(){
+  var duration = moment.duration({
+    'hour': 0,
+    'minutes': 0,
+    'seconds': 10
+  });
+  var interval = 1;
+  var timerID = -1; //hold the id
+  var timer = setInterval(function () {
+    if(duration.asSeconds() <= 0){
+      console.log("STOP!");
+      console.log(duration.asSeconds());
+      clearInterval(timerID);
+    }  else {
+        duration = moment.duration(duration.asSeconds() - interval, 'seconds');
+        $('.countdown').html( duration.format("hh:mm:ss", { trim: false }) );
+      }
+    }, 1000);
+    timerID = timer;
+    return timer;
+    };
+    //start
+    myTimer = startTimer();
+    //stop
+    //clearInterval(myTimer);
+
+  </script>
+</body>
+</html>
