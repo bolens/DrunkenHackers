@@ -3,6 +3,12 @@ var selectedCard;
 
 var $cards = [];
 var voteTotal;
+var cardVotes = [];
+
+database.ref('beerCandidates').on('child_changed', function(snap){
+  cardVotes[0] = snap.val().beerId.1.votes;
+ console.log('cardVotes: ' + cardVotes[0]);
+})
 
 database.ref("/votes").on("value", function(snap){
   let $card1 = $('#resultscard1'),
@@ -38,22 +44,29 @@ $(".card").on("click", function (event) {
   selectedCard = parseInt($(this).data("card"));
 
   if (selectedCard === 0) {
-    database.ref("/votes").set({
-      card1: currentCard,
-      card2: $cards[1],
-      card3: $cards[2]
+    database.ref("/beerCandidates/" + currentCanditate).set({
+      beerId: {
+        1: {
+          votes: currentCard
+        }
+      }
     })
   } else if (selectedCard === 1) {
-    database.ref("/votes").set({
-      card2: currentCard,
-      card1: $cards[0],
-      card3: $cards[2]
-    })
+    database.ref("/beerCandidates/" + currentCanditate).set({
+        beerId: {
+          2: {
+            votes: currentCard
+          }
+        }
+      })
+
   } else if (selectedCard === 2) {
-    database.ref("/votes").set({
-      card3: currentCard,
-      card1: $cards[0],
-      card2: $cards[1]
-    })
+    database.ref("/beerCandidates/" + currentCanditate).set({
+        beerId: {
+          3: {
+            votes: currentCard
+          }
+        }
+      })
   }
 })

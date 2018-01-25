@@ -6,112 +6,107 @@ jQuery.ajaxPrefilter(function(options) {
   }
 });
 
-var beerCandidates = {
-  category: "",
-  beerId: {
-    beerIdOne: "",
-    beerIdTwo: "",
-    beerIdThree: "",
-  }
-};
-
-const categoryArray = ['dog', 'bear', 'witch', 'cat', 'heaven', 'angel']
-let labelDiscardArray = [];
-let testArray = [];
+const categoryArray = ['dog', 'bear', 'witch', 'cat', 'devil', 'angel', 'city']
 let labelsArray = [];
-let beerIdArray = [];
 let label = [];
+let currentCanditate;
 let databaseOne = firebase.database();
 
-function beerData() {
-  const queryURL = "http://api.brewerydb.com/v2/beers?&hasLabels=Y&withBreweries=Y&key=" + apikey;
-  console.log(queryURL);
+function beerCategoryData(category) {
+  let queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&withBreweries=Y&q=" + category + "&type=beer&key=" + apikey;
+//  console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response) {
     numberOfPages = response.numberOfPages;
-    console.log('Number of pages: ' + numberOfPages);
-    console.log('Total results: ' + response.totalResults);
-
-    let $container = $('.card-image');
-    let $name = $('.card-title');
-    $container.empty();
-    $name.empty();
-
-    labelsArray.push(response.data);
-    labelsArray = labelsArray[0];
-    results = labelsArray.length;
-    console.log('Results with labels: ' + results);
-
-    labelsArray = shuffle(labelsArray);
-    console.log(labelsArray);
-    labelsDisplay(labelsArray);
-    labelsDisplay(labelsArray);
-    labelsDisplay(labelsArray);
-  })
-};
-
-function beerCategoryData(category) {
-  let queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + category + "&type=beer&key=" + apikey;
-  console.log(queryURL);
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).done(function(response) {
-    $(response.data).each(function(index, val) {
-      if (this.hasOwnProperty("labels") && this.hasOwnProperty("style") ) {
-      labelsArray.push(val);
+//    console.log('Number of pages: ' + (numberOfPages));
+    if (numberOfPages > 1){
+      for (var i = 1; i < numberOfPages + 1; i++) {
+        var page = [i];
+        queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + category + "&type=beer&p=" + page + "&key=" + apikey;
+          $.ajax({
+            url: queryURL,
+            method: "GET"
+          }).done(function(response) {
+//            console.log(response);
+            $(response.data).each(function(index, val) {
+              if (this.hasOwnProperty("labels") && this.hasOwnProperty("style") ) {
+                labelsArray = labelsArray.concat(val);
+              }
+            })
+          }).done(function(){
+            shuffle(labelsArray);
+            labelsDisplay(labelsArray);
+          })
       }
-      shuffle(labelsArray);
-    })
-    labelsDisplay(labelsArray);
+    }
   })
-  console.log(labelsArray);
 };
 
-newCategory = categoryArray[1];
+newCategory = categoryArray[4];
 beerCategoryData(newCategory);
+/*
+ let clearId = setInterval(function(){
+   console.log(labelsArray);
+ }, 10000);
 
+function display() {
+  if (labelsArray.length > 2) {
+    labelsDisplay(labelsArray);
+  } else {
+    clearInterval(clearId);
+  }
+};
+*/
 function labelsDisplay(array) {
+//  console.log(labelsArray);
   let $container = $('.card-image');
   let $name = $('.card-title');
   $container.empty();
   $name.empty();
   $('#current-category').empty();
-  console.log(array);
-
+//  console.log(array);
   label = array.splice(0, 3);
-  console.log(label);
+//  console.log(label);
   $(label).each(function(i, val) {
     beerIdOne = label[0].id;
-
     beerIdTwo = label[1].id;
-
     beerIdThree = label[2].id;
     let newImage = $('<img>');
     let newTitle = $('<h5>' + label[i].name + '</h5>');
     let newStyle = $('<h6>Style: ' + label[i].style.shortName + '</h6>');
-   newImage.attr('src', label[i].labels.medium);
-   $('#img-' + i).append(newImage);
-   $('#name-' + i).append(newTitle);
-   $('#name-' + i).append(newStyle);
+    newImage.attr('src', label[i].labels.medium);
+    $('#img-' + i).append(newImage);
+    $('#name-' + i).append(newTitle);
+    $('#name-' + i).append(newStyle);
   })
   $('#current-category').append(newCategory + 's');
   writeBeerLabelData(newCategory, beerIdOne, beerIdTwo, beerIdThree);
+
 };
 
 function writeBeerLabelData(category, beerIdOne, beerIdTwo, beerIdThree) {
-  databaseOne.ref('beerCandidates/').push({
+  currentCanditate = databaseOne.ref('beerCandidates/').push({
     category: category,
     dateAdded: firebase.database.ServerValue.TIMESTAMP,
     beerId: {
-      1: beerIdOne,
-      2: beerIdTwo,
-      3: beerIdThree
+      1: {
+        id: beerIdOne,
+        votes: 0
+      },
+      2: {
+        id: beerIdTwo,
+        votes: 0
+      },
+      3: {
+        id: beerIdThree,
+        votes: 0
+      }
     }
-  });
-}
+  }).key;
+console.log(currentCanditate);
+};
 
 // Fisher-Yates Shuffle
 function shuffle(array) {
@@ -128,8 +123,3 @@ function shuffle(array) {
   }
   return array;
 }
-// Used like so
-/*var arr = [2, 11, 37, 42];
-arr = shuffle(arr);
-console.log(arr);
-*/
