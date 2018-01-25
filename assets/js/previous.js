@@ -13,7 +13,7 @@ function renderPrevWinners() {
       //console.log(response);
       var newListItem = $('<li>');
       var newLink = $('<a>');
-      newLink.addClass('prevBeer')
+      newLink.addClass('prevItem')
         .attr({
           href: "#",
           "data-beer-id": response.id
@@ -27,7 +27,7 @@ function renderPrevWinners() {
 
 renderPrevWinners();
 
-$('#prevWinner').on('click', '.prevBeer', function(e) {
+$('#prevWinner').on('click', '.prevItem', function(e) {
   e.preventDefault();
   loadFeatured(this);
   $('html, body').animate({

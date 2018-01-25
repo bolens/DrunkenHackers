@@ -150,7 +150,7 @@ p:last-of-type {
   font-weight: 400;
   display: block;
 }
-.prevBeer {
+.prevItem {
   color: #a2122e;
   font-size: 1.5rem;
   display: block;
@@ -223,13 +223,13 @@ p:last-of-type {
 
   transition: width 0.35s ease-in-out;
 }
-.card[data-card="0"] {
+.card[data-votes="0"] {
   border: 2px solid #1e3bd4;
 }
-.card[data-card="1"] {
+.card[data-votes="1"] {
   border: 2px solid #b12525;
 }
-.card[data-card="2"] {
+.card[data-votes="2"] {
   border: 2px solid #009e10;
 }
 #resultscard1 {
