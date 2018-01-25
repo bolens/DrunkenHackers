@@ -50,6 +50,10 @@ ul.center li a {
   clear:both;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   color: #474954;
   background-color: #ffffff;
@@ -92,6 +96,28 @@ p:last-of-type {
 .container {
   position: relative;
 }
+.overlay-logo {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+.overlay-logo:hover::before,
+.overlay-logo:focus::before {
+  // Add "To top"
+}
+.overlay-logo:hover::after,
+.overlay-logo:focus::after {
+  // Add arrow
+}
+.overlay-logo img {
+  width: 55px;
+  vertical-align: middle;
+  transition: scale .55s ease-in-out;
+}
+.overlay-logo:hover img,
+.overlay-logo:focus img {
+  transform: scale(1.1);
+}
 .card {
   padding: 10px 10px 0px 10px;
   position: relative;
@@ -124,6 +150,13 @@ p:last-of-type {
   font-weight: 400;
   display: block;
 }
+.prevItem {
+  color: #a2122e;
+  font-size: 1.5rem;
+  display: block;
+  line-height: 1.75rem;
+}
+
 #hacker-hero {
   color: #474954;
   height: calc(100vh - 64px);
@@ -190,13 +223,13 @@ p:last-of-type {
 
   transition: width 0.35s ease-in-out;
 }
-.card[data-card="0"] {
+.card[data-votes="0"] {
   border: 2px solid #1e3bd4;
 }
-.card[data-card="1"] {
+.card[data-votes="1"] {
   border: 2px solid #b12525;
 }
-.card[data-card="2"] {
+.card[data-votes="2"] {
   border: 2px solid #009e10;
 }
 #resultscard1 {
@@ -253,6 +286,9 @@ p:last-of-type {
   min-height: calc(100vh - 64px);
 }
 @media (max-width: 992px) {
+  nav .brand-logo {
+    left: 5%;
+  }
   section {
     height: auto;
     min-height: calc(100vh - 64px);
@@ -275,7 +311,12 @@ p:last-of-type {
   }
 }
 @media (max-width: 600px) {
-
+  nav .brand-logo {
+    display: none;
+  }
+  .featured-tech {
+    margin-bottom: 1rem;
+  }
   .card {
     padding: 10px;
   }

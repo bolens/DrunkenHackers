@@ -65,6 +65,7 @@ function labelsDisplay(array) {
   let $name = $('.card-title');
   $container.empty();
   $name.empty();
+
   $('#current-category').empty();
 //  console.log(array);
   label = array.splice(0, 3);

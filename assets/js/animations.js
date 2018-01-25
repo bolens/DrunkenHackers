@@ -15,10 +15,16 @@ $(document).ready(function() {
       scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
-  $("#previous-link").click(function(e) {
+  $("#categories-link").click(function(e) {
     e.preventDefault();
     $('html, body').animate({
-      scrollTop: $("#previous").offset().top - 64
+      scrollTop: $("#categories").offset().top - 64
+    }, 1000);
+  });
+  $("#to-top").click(function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+      scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
 
@@ -70,8 +76,8 @@ $(document).ready(function() {
     .setTween(featuredBeer)
     //.addIndicators({name: "Featured Section"})
     .addTo(controller);
-  new ScrollMagic.Scene({triggerElement: "#previous", duration: 250, tweenChanges: true})
+  new ScrollMagic.Scene({triggerElement: "#categories", duration: 250, tweenChanges: true})
     .setTween()
-    .addIndicators({name: "Previous Section"})
+    .addIndicators({name: "Categories Section"})
     .addTo(controller);
 });

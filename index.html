@@ -6,47 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Awesome Beers as voted by The People</title>
     <!-- Stylesheets -->
-    <!-- Reset -->
     <link rel="stylesheet" href="assets/css/reset.css">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Bad+Script|Kumar+One|Roboto" rel="stylesheet">
-    <!-- Font-Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" integrity="sha256-e22BQKCF7bb/h/4MFJ1a4lTRR2OuAe8Hxa/3tgU5Taw=" crossorigin="anonymous" />
-    <!-- Main styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Javascript -->
-    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" integrity="sha256-uWtSXRErwH9kdJTIr1swfHFJn/d/WQ6s72gELOHXQGM=" crossorigin="anonymous"></script>
-    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js" integrity="sha256-u1jheEMh2SAQia+yme5UvHI78yFF9QgW8aH5YGD8MVA=" crossorigin="anonymous"></script>
-    <!-- ScrollMagic -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js" integrity="sha256-+bwq8Vn1b2Nz1mF35GyYCR3WP1zNBq6AX9P+rIR/vg8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js" integrity="sha256-h8XvjWyCJSpIWTvjHOnvHOoYiYNnSzc2DQb6WZCsDb4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.min.js" integrity="sha256-/6NS53KuMVgzxQozkNjhDjwcyDmv8Sk52zodr91uoo4=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<<<<<<< HEAD
     <!-- Link to Moment.js -->
     <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment-duration-format@2.2.1/lib/moment-duration-format.min.js"></script>
+=======
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
+>>>>>>> c084fdd3ab80dc5661fa3a4b6d336263c4d49c5f
   </head>
   <body>
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper">
-
           <ul class="center">
             <li><a href="#featured" id="featured-link">Featured</a></li>
             <li><a href="#voting" id="voting-link">- Voting -</a></li>
             <li><a href="#previous" id="previous-link">Previous</a></li>
           </ul>
-
-          <!-- <ul class="right">
-            <li><a class="btn-floating btn-small waves-effect waves-light white circle"><i class="material-icons"></i></a></li>
-          </ul> -->
         </div>
       </nav>
     </div>
@@ -70,8 +60,8 @@
           </div>
         </div>
         <div id="card-container" class="row">
-          <div class="col s12 m6 l4">
-            <div class="card" data-card="0">
+          <div class="col s12 m4 l4">
+            <div class="card" data-votes="0">
               <div class="card-image" id="img-0">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -80,8 +70,8 @@
               </div>
             </div>
           </div>
-          <div class="col s12 m6 l4">
-            <div class="card" data-card="1">
+          <div class="col s12 m4 l4">
+            <div class="card" data-votes="1">
               <div class="card-image" id="img-1">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -90,8 +80,8 @@
               </div>
             </div>
           </div>
-          <div class="col s12 m6 l4">
-            <div class="card" data-card="2">
+          <div class="col s12 m4 l4">
+            <div class="card" data-votes="2">
               <div class="card-image" id="img-2">
                 <img src="assets/images/sample-1.jpg" alt="sample">
               </div>
@@ -150,18 +140,14 @@
                   <p class="clearfix">Brewery: <span id="featured-brewery">&lt;Name&gt;</span></p>
                   <p class="clearfix">Location: <span id="featured-location">&lt;City, State&gt;</p>
                   <p>
-                    Serve in a <span id="featured-glass"></span>.
+                    Serve in a <span id="featured-glass">&lt;Glass&gt;</span>.
                   </p>
                   <p id="featured-description">&lt;Description&gt;</p>
                 </div>
               </div>
               <div class="row">
-                <div class="col s12 m6">
+                <div class="col s12 m8">
                   <div class="iframe square" id="map">Google Maps iframe</div>
-                </div>
-                <div class="col s12 m6">
-                  <!-- <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Uber</a>
-                  <a class="waves-effect waves-light btn"><i class="fa fa-car" aria-hidden="true"></i>Lyft</a> -->
                 </div>
               </div>
             </div>
@@ -190,38 +176,31 @@
         </div>
       </div>
     </section>
-    <section id="previous">
+    <section id="categories">
       <div class="container">
         <div class="row">
           <div class="col s12">
-            <h3>Previous Winners</h3>
+            <h3>Other Categories</h3>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
-            <ul class="list-3-col">
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
+            <ul class="list-3-col" id="prevWinner">
             </ul>
           </div>
         </div>
       </div>
     </section>
-
+    <div class="overlay-logo">
+      <a id="to-top" href="#voting"><img src="assets/images/beer.svg" /></a>
+    </div>
     <script src="assets/js/api.js"></script>
     <script src="assets/js/config.js"></script>
-    <!-- Main js -->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/featured.js"></script>
     <script src="assets/js/voting.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script src="assets/js/previous.js"></script>
     <script src="assets/js/maps.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmo659hrU-kXsaxH2hjtBnWYeSTPi2PJo&callback=initMap"  async defer></script>
-
-
   </body>
 </html>

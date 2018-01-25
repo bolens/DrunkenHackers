@@ -39,9 +39,9 @@ database.ref("/votes").on("value", function(snap){
 });
 
 $(".card").on("click", function (event) {
-  var currentCard = $cards[parseInt($(this).data("card"))];
+  var currentCard = $cards[parseInt($(this).data("votes"))];
   currentCard++;
-  selectedCard = parseInt($(this).data("card"));
+  selectedCard = parseInt($(this).data("votes"));
 
   if (selectedCard === 0) {
     database.ref("/beerCandidates/" + currentCanditate).set({
@@ -69,4 +69,4 @@ $(".card").on("click", function (event) {
         }
       })
   }
-})
+});
