@@ -11,7 +11,7 @@ let labelsArray = [];
 let label = [];
 let currentCanditate;
 let databaseOne = firebase.database();
-
+/*
 function beerCategoryData(category) {
   let queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&withBreweries=Y&q=" + category + "&type=beer&key=" + apikey;
 //  console.log(queryURL);
@@ -43,9 +43,32 @@ function beerCategoryData(category) {
     }
   })
 };
+*/
 
-newCategory = categoryArray[4];
-beerCategoryData(newCategory);
+function beerCategoryData(category) {
+  let queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + category + "&type=beer&key=" + apikey;
+  console.log(queryURL);
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response) {
+    // change to for
+    for(var i = 0; i < 4; i++) {
+      if (this.hasOwnProperty("labels") && this.hasOwnProperty("style") ) {
+        labelsArray.push(val);
+      }
+    //  shuffle(labelsArray);
+    }
+    labelsDisplay(labelsArray);
+  })
+  console.log(labelsArray);
+};
+
+//beerCategoryData(newCategory);
+$(categoryArray).each(function(index, val){
+  newCategory = categoryArray[index];
+  beerCategoryData(newCategory);
+})
 /*
  let clearId = setInterval(function(){
    console.log(labelsArray);
@@ -83,8 +106,11 @@ function labelsDisplay(array) {
     $('#name-' + i).append(newStyle);
   })
   $('#current-category').append(newCategory + 's');
+console.log(database.ref('beerCandidates/').length);
+console.log(categoryArray.length);
+if(database.ref('beerCandidates/').length < categoryArray.length){
   writeBeerLabelData(newCategory, beerIdOne, beerIdTwo, beerIdThree);
-
+}
 };
 
 function writeBeerLabelData(category, beerIdOne, beerIdTwo, beerIdThree) {
@@ -92,15 +118,15 @@ function writeBeerLabelData(category, beerIdOne, beerIdTwo, beerIdThree) {
     category: category,
     dateAdded: firebase.database.ServerValue.TIMESTAMP,
     beerId: {
-      1: {
+      one: {
         id: beerIdOne,
         votes: 0
       },
-      2: {
+      two: {
         id: beerIdTwo,
         votes: 0
       },
-      3: {
+      three: {
         id: beerIdThree,
         votes: 0
       }
