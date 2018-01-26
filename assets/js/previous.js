@@ -27,5 +27,7 @@ function loadFeatured(that) {
   // console.log($(that));
   currentCategoryIndex = $(that).data('category');
   displayCategory(currentCategoryIndex);
-  // getBeerInfo(beerID);
+  calculateVoteTotals();
+  updateVotes();
+  getBeerInfo(currentWinnerId);
 }

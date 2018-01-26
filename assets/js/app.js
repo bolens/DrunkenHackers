@@ -157,10 +157,13 @@ function displayCategory(categoryIndex) {
 
     if (cardIndex == 0) {
       $card.css('border', '2px solid #1e3bd4');
+      $('#resultscard1').text(response.name);
     } else if (cardIndex == 1) {
       $card.css('border', '2px solid #b12525');
+      $('#resultscard2').text(response.name);
     } else if (cardIndex == 2) {
       $card.css('border', '2px solid #009e10');
+      $('#resultscard3').text(response.name);
     }
   });
 }

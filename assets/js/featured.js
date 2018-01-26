@@ -1,5 +1,3 @@
-var latestFeatured;
-
 var featuredBeer = {
   id: "",
   name: "",
