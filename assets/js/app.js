@@ -12,10 +12,6 @@ var categories = [];
 var currentCategoryIndex = 0;
 var $cards = [];
 
-var labelsArray = [];
-var label = [];
-var currentCanditate;
-
 database.ref().once('value').then(function(snap) {
   if (snap.val() == null) {
     console.log('Firebase is empty, generating categories...');
@@ -59,7 +55,8 @@ function buildCategories(categoriesArray) {
       },
       numberOfBeers: "",
       lastPosition: 0,
-      uid: ""
+      uid: "",
+      featured: ""
     };
     categories.push(newCategoryObj);
     uid = database.ref('beerCandidates/').push(newCategoryObj).key;
@@ -111,6 +108,8 @@ function getBeerFromCategories() {
       }
       categories[categoryIndex].lastPosition = 3;
 
+      categories[categoryIndex].featured = categories[categoryIndex].responses[0].id;
+
       if (!--count) {
         console.log('Beer category data fetched.');
         displayCategory(currentCategoryIndex);
@@ -156,7 +155,7 @@ function displayCategory(categoryIndex) {
   });
 
   calculateVoteTotals();
-  getBeerInfo(currentWinnerId);
+  getBeerInfo(categories[currentCategoryIndex].featured);
 }
 function updateCategories() {
   console.log('Populating firebase data.');

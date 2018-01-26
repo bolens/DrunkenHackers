@@ -24,7 +24,7 @@ function calculateVoteTotals() {
 
     if (currentVotes > currentWinnerVotes) {
       currentWinnerVotes = currentVotes;
-      currentWinnerId = votesId;
+      categories[currentCategoryIndex].featured = votesId;
     }
   });
   updateVotes();
@@ -76,12 +76,11 @@ $(".card").on("click", function (e) {
 
   calculateVoteTotals();
 
-  // displayCategory(currentWinnerId);
-  getBeerInfo(currentWinnerId);
+  getBeerInfo(categories[currentCategoryIndex].featured);
   if (currentCategoryIndex < categoryArray.length) {
     // currentCategoryIndex++;
   } else {
-    currentCategoryIndex = 0;
+    // currentCategoryIndex = 0;
   }
 
 });
