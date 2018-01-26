@@ -103,11 +103,11 @@ p:last-of-type {
 }
 .overlay-logo:hover::before,
 .overlay-logo:focus::before {
-  // Add "To top"
+  /* Add "To top" */
 }
 .overlay-logo:hover::after,
 .overlay-logo:focus::after {
-  // Add arrow
+  /* Add arrow */
 }
 .overlay-logo img {
   width: 55px;
@@ -150,11 +150,13 @@ p:last-of-type {
   font-weight: 400;
   display: block;
 }
-.prevItem {
+.category {
   color: #a2122e;
   font-size: 1.5rem;
   display: block;
   line-height: 1.75rem;
+  text-transform: capitalize;
+  padding: 10px 0px;
 }
 
 #hacker-hero {
@@ -211,37 +213,18 @@ p:last-of-type {
 }
 #results {
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
-#resultscard1,
-#resultscard2,
-#resultscard3 {
-  float: left;
-  width: 33.33%;
-  height: 10px;
+#results > div {
   padding: 10px;
-
-  transition: width 0.35s ease-in-out;
 }
-.card[data-votes="0"] {
-  border: 2px solid #1e3bd4;
+.name {
+  floaT: left;
 }
-.card[data-votes="1"] {
-  border: 2px solid #b12525;
+.votes {
+  float: right;
 }
-.card[data-votes="2"] {
-  border: 2px solid #009e10;
-}
-#resultscard1 {
-  background-color: #1e3bd4;;
-}
-#resultscard2 {
-  background-color: #b12525;
-}
-#resultscard3 {
-  background-color: #009e10;
-}
-
 #voting-link {
   font-size: 1.5rem;
   margin-top: 0;
@@ -280,8 +263,10 @@ p:last-of-type {
   font-family: 'Kumar One', cursive;
   font-size: 1.5rem;
 }
-
-#previous {
+#featured-category {
+  text-transform: capitalize;
+}
+#categories {
   padding: 30px;
   min-height: calc(100vh - 64px);
 }

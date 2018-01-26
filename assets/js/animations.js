@@ -27,6 +27,13 @@ $(document).ready(function() {
       scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
+  $('#category-list').on('click', '.category', function(e) {
+    e.preventDefault();
+    loadFeatured(this);
+    $('html, body').animate({
+      scrollTop: $("#voting").offset().top - 64
+    }, 1000);
+  });
 
   // Function to hide intro title
   function hideTitle() {
@@ -78,6 +85,6 @@ $(document).ready(function() {
     .addTo(controller);
   new ScrollMagic.Scene({triggerElement: "#categories", duration: 250, tweenChanges: true})
     .setTween()
-    .addIndicators({name: "Categories Section"})
+    //.addIndicators({name: "Categories Section"})
     .addTo(controller);
 });
