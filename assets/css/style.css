@@ -219,13 +219,12 @@ p:last-of-type {
 #results > div {
   padding: 10px;
 }
-#resultscard1 {
+.name {
+  floaT: left;
 }
-#resultscard2 {
+.votes {
+  float: right;
 }
-#resultscard3 {
-}
-
 #voting-link {
   font-size: 1.5rem;
   margin-top: 0;

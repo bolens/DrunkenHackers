@@ -54,7 +54,7 @@ function getBeerInfo(beerID) {
 }
 
 function updateFeaturedBeer() {
-  console.log(featuredBeer);
+  //console.log(featuredBeer);
   $('#featured-name').text(featuredBeer.name);
   $('#featured-category').text(categoryArray[currentCategoryIndex]);
   $('#featured-brewery').text(featuredBeer.brewery);

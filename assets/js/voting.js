@@ -35,9 +35,21 @@ function pushVotes() {
 }
 
 function updateVotes() {
-  $('#resultscard1 .votes').text(cardsVotes[0]);
-  $('#resultscard2 .votes').text(cardsVotes[1]);
-  $('#resultscard3 .votes').text(cardsVotes[2]);
+  if (typeof(cardsVotes[0]) == 'undefined') {
+    $('#resultscard1').children('.votes').text(0);
+  } else {
+    $('#resultscard1').children('.votes').text(cardsVotes[0]);
+  }
+  if (typeof(cardsVotes[1]) == 'undefined') {
+    $('#resultscard2').children('.votes').text(0);
+  } else {
+    $('#resultscard2').children('.votes').text(cardsVotes[1]);
+  }
+  if (typeof(cardsVotes[2]) == 'undefined') {
+    $('#resultscard3').children('.votes').text(0);
+  } else {
+    $('#resultscard3').children('.votes').text(cardsVotes[2]);
+  }
   pushVotes();
 }
 
@@ -68,7 +80,7 @@ $(".card").on("click", function (e) {
   // displayCategory(currentWinnerId);
   getBeerInfo(currentWinnerId);
   if (currentCategoryIndex < categoryArray.length) {
-    currentCategoryIndex++;
+    // currentCategoryIndex++;
   } else {
     currentCategoryIndex = 0;
   }

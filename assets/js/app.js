@@ -156,11 +156,11 @@ function displayCategory(categoryIndex) {
     $card.children('.card-content').html($newTitle);
 
     if (cardIndex == 0) {
-      $('#resultscard1').text(response.name + ":");
+      $('#resultscard1').children('.name').text(response.name + ":");
     } else if (cardIndex == 1) {
-      $('#resultscard2').text(response.name + ":");
+      $('#resultscard2').children('.name').text(response.name + ":");
     } else if (cardIndex == 2) {
-      $('#resultscard3').text(response.name + ":");
+      $('#resultscard3').children('.name').text(response.name + ":");
     }
   });
 
