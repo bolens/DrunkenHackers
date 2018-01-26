@@ -10,60 +10,34 @@ const categoryArray = ['dog', 'bear', 'witch', 'cat', 'devil', 'angel', 'city'];
 var candidateArray = [];
 var categories = [];
 var currentCategoryIndex = 0;
+var $cards = [];
 
 let labelsArray = [];
 let label = [];
 var currentCanditate;
 
-/*
-function beerCategoryData(category) {
-  let queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&withBreweries=Y&q=" + category + "&type=beer&key=" + apikey;
-//  console.log(queryURL);
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).done(function(response) {
-    numberOfPages = response.numberOfPages;
-//    console.log('Number of pages: ' + (numberOfPages));
-    if (numberOfPages > 1){
-      for (var i = 1; i < numberOfPages + 1; i++) {
-        var page = [i];
-        queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + category + "&type=beer&p=" + page + "&key=" + apikey;
-          $.ajax({
-            url: queryURL,
-            method: "GET"
-          }).done(function(response) {
-//            console.log(response);
-            $(response.data).each(function(index, val) {
-              if (this.hasOwnProperty("labels") && this.hasOwnProperty("style") ) {
-                labelsArray = labelsArray.concat(val);
-              }
-            })
-          }).done(function(){
-            shuffle(labelsArray);
-            labelsDisplay(labelsArray);
-          })
-      }
-    }
-  })
-};
-*/
 database.ref().once('value').then(function(snap) {
-  console.log(snap.val());
+  //console.log(snap.val());
   if (snap.val() == null) {
     console.log('Firebase is empty, generating categories.');
     buildCategories(categoryArray);
-    //getBeerFromCategories();
+    // getBeerFromCategories();
   } else {
     console.log('Found firebase data, populating local variables.');
     $.each(snap.val().beerCandidates, function(index, el) {
+      // console.log(this);
       categories.push(this);
       candidateArray.push(this.uid);
+      // console.log(candidateArray);
     });
-    if (typeof(categories[0].numberOfBeers) == 'undefined' || categories[0].numberOfBeers == '') {
-      console.log('Firebase data was not populated, fetching data.');
-      getBeerFromCategories();
-    }
+    $cards[0] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerOne.votes;
+    $cards[1] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerTwo.votes;
+    $cards[2] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerThree.votes;
+    console.log($cards);
+    console.log('Firebase data was not populated, fetching data.');
+
+    getBeerFromCategories();
+
     console.log(categories);
   }
 }, function(errorObject) {
@@ -104,6 +78,7 @@ function buildCategories(categoriesArray) {
     database.ref('beerCandidates/' + uid).set(newCategoryObj);
     candidateArray.push(uid);
   });
+  getBeerFromCategories();
 }
 
 function getBeerFromCategories() {
@@ -126,14 +101,14 @@ function getBeerFromCategories() {
 
       categories[categoryIndex].responses = newResponses;
       categories[categoryIndex].numberOfBeers = newResponses.length;
-      var lastPosition = categories[categoryIndex].lastPosition
+      var lastPosition = categories[categoryIndex].lastPosition;
       var newPosition = lastPosition + 3;
-      console.log(lastPosition);
-      console.log(newPosition);
+      // console.log(lastPosition);
+      // console.log(newPosition);
 
-      for (var i = lastPosition; i < newPosition; i++) {
-        console.log(categories[categoryIndex].responses[i]);
-
+      for (var i = lastPosition; i < categories[categoryIndex].numberOfBeers; i++) {
+        // console.log(categories[categoryIndex].responses[i]);
+        // console.log(categories[categoryIndex].responses[i].id);
         if (i == categories[categoryIndex].lastPosition) {
           categories[categoryIndex].beerOne.id = categories[categoryIndex].responses[i].id;
         } else if (i == categories[categoryIndex].lastPosition + 1) {
@@ -141,33 +116,32 @@ function getBeerFromCategories() {
         } else if (i == categories[categoryIndex].lastPosition + 2) {
           categories[categoryIndex].beerThree.id = categories[categoryIndex].responses[i].id;
         } else {}
-
-        categories[categoryIndex].lastPosition++;
-        console.log(categories[categoryIndex].lastPosition);
       }
+      categories[categoryIndex].lastPosition = 3;
 
       if (categories[currentCategoryIndex].beerOne.id != "" &&
         categories[currentCategoryIndex].beerTwo.id != "" &&
         categories[currentCategoryIndex].beerThree.id != "") {
           displayCategory(currentCategoryIndex);
       }
-      console.log(categories);
+      // console.log(categories);
     });
   });
   updateCategories();
 }
 function displayCategory(categoryIndex) {
   $('#current-category').text(categories[categoryIndex].category);
-  $('.card').each(function(index, val) {
+  $('.card').each(function(cardIndex, val) {
     var $card = $(this);
     var $newImage = $('<img>');
     var $newTitle = $('<div>');
     var $newName = $('<h5>');
     var $newStyle = $('<h6>');
-    //console.log(categories[categoryIndex]);
-    //console.log(categories[categoryIndex].responses[index + categories[categoryIndex].lastPosition - 3]);
-    var response = categories[categoryIndex].responses[index + categories[categoryIndex].lastPosition - 3];
-    console.log(response);
+
+    // console.log(categories[categoryIndex]);
+    // console.log(categories[categoryIndex].responses[index + categories[categoryIndex].lastPosition - 3]);
+    var response = categories[categoryIndex].responses[cardIndex + categories[categoryIndex].lastPosition - 3];
+    // console.log(response);
     $newImage.attr({
       src: response.labels.medium,
       alt: response.name
@@ -180,14 +154,31 @@ function displayCategory(categoryIndex) {
     //console.log(this);
     $card.children('.card-image').html($newImage);
     $card.children('.card-content').html($newTitle);
+
+    if (cardIndex == 0) {
+      $card.css('border', '2px solid #1e3bd4');
+    } else if (cardIndex == 1) {
+      $card.css('border', '2px solid #b12525');
+    } else if (cardIndex == 2) {
+      $card.css('border', '2px solid #009e10');
+    }
   });
 }
 function updateCategories() {
-  //console.log(categories);
-  $(candidateArray).each(function(index, val) {
-    //console.log(categories[index]);
-    //database.ref('beerCandidates/' + candidateArray[index]).set(categories[index]);
+  console.log(categories);
+  $(categories).each(function(categoryIndex, val) {
+    console.log("Category " + categoryIndex + ": ");
+    console.log(candidateArray[categoryIndex]);
+    console.log(this);
+
+    database.ref('beerCandidates/' + candidateArray[categoryIndex]).update(this);
   });
+  console.log('Firebase data populated.');
+  // database.ref().once('value').then(function(snap) {
+  //   console.log(snap.val());
+  // }, function(errorObject) {
+  //   console.log("The read failed: " + errorObject.code);
+  // });
 }
 // $(document).ready(function() {
 //   displayCategory(currentCategoryIndex);

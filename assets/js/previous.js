@@ -1,42 +1,31 @@
-var prevWinners = ["qbsiWU","thTbY7"];
-
 function renderPrevWinners() {
-  $(prevWinners).each(function(index, el) {
-    var queryURL = "http://api.brewerydb.com/v2//beer/";
-    //console.log(prevWinners[index]);
-    queryURL = queryURL + prevWinners[index] + "?withBreweries=y&key=" + apikey;
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).done(function(response) {
-      response = response.data;
-      //console.log(response);
-      var newListItem = $('<li>');
-      var newLink = $('<a>');
-      newLink.addClass('prevItem')
-        .attr({
-          href: "#",
-          "data-beer-id": response.id
-        })
-        .text(response.name);
-      newListItem.append(newLink);
-      $("#prevWinner").append(newListItem);
-    });
+  $(categoryArray).each(function(categoryIndex, el) {
+    var newListItem = $('<li>');
+    var newLink = $('<a>');
+    newLink.addClass('category')
+      .attr({
+        href: "#",
+        "data-category": categoryIndex
+      })
+      .text(categoryArray[categoryIndex]);
+    newListItem.append(newLink);
+    $("#category-list").append(newListItem);
   });
 }
 
 renderPrevWinners();
 
-$('#prevWinner').on('click', '.prevItem', function(e) {
+$('#category-list').on('click', '.category', function(e) {
   e.preventDefault();
   loadFeatured(this);
   $('html, body').animate({
-    scrollTop: $("#featured").offset().top - 64
+    scrollTop: $("#voting").offset().top - 64
   }, 1000);
 });
 
 function loadFeatured(that) {
-  //console.log($(that));
-  var beerID = $(that).data('beer-id');
-  getBeerInfo(beerID);
+  // console.log($(that));
+  currentCategoryIndex = $(that).data('category');
+  displayCategory(currentCategoryIndex);
+  // getBeerInfo(beerID);
 }

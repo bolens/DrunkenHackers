@@ -150,11 +150,13 @@ p:last-of-type {
   font-weight: 400;
   display: block;
 }
-.prevItem {
+.category {
   color: #a2122e;
   font-size: 1.5rem;
   display: block;
   line-height: 1.75rem;
+  text-transform: capitalize;
+  padding: 10px 0px;
 }
 
 #hacker-hero {
@@ -281,7 +283,7 @@ p:last-of-type {
   font-size: 1.5rem;
 }
 
-#previous {
+#categories {
   padding: 30px;
   min-height: calc(100vh - 64px);
 }
