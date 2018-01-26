@@ -23,10 +23,11 @@ database.ref().once('value').then(function(snap) {
       candidateArray.push(this.uid);
     });
     console.log('Local categories populated.');
+    console.log(categories);
+
     cardsVotes[0] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerOne.votes;
     cardsVotes[1] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerTwo.votes;
     cardsVotes[2] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerThree.votes;
-    // console.log(categories);
 
     displayCategory(currentCategoryIndex);
     calculateVoteTotals();
