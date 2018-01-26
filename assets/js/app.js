@@ -82,6 +82,7 @@ function buildCategories(categoriesArray) {
 }
 
 function getBeerFromCategories() {
+  var count = $(categories).length
   $(categories).each(function(categoryIndex) {
     var queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + categories[categoryIndex].category + "&type=beer&key=" + apikey;
     //console.log(queryURL);
@@ -119,15 +120,13 @@ function getBeerFromCategories() {
       }
       categories[categoryIndex].lastPosition = 3;
 
-      if (categories[currentCategoryIndex].beerOne.id != "" &&
-        categories[currentCategoryIndex].beerTwo.id != "" &&
-        categories[currentCategoryIndex].beerThree.id != "") {
-          displayCategory(currentCategoryIndex);
+      if (!--count) {
+        displayCategory(currentCategoryIndex);
+        updateCategories();
       }
       // console.log(categories);
     });
   });
-  updateCategories();
 }
 function displayCategory(categoryIndex) {
   $('#current-category').text(categories[categoryIndex].category);
