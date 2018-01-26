@@ -213,25 +213,17 @@ p:last-of-type {
 }
 #results {
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 #results > div {
-  text-align: center;
-  color: white;
-  float: left;
-  width: 33.33%;
   padding: 10px;
-
-  transition: width 0.35s ease-in-out;
 }
 #resultscard1 {
-  background-color: #1e3bd4;;
 }
 #resultscard2 {
-  background-color: #b12525;
 }
 #resultscard3 {
-  background-color: #009e10;
 }
 
 #voting-link {
@@ -272,7 +264,9 @@ p:last-of-type {
   font-family: 'Kumar One', cursive;
   font-size: 1.5rem;
 }
-
+#featured-category {
+  text-transform: capitalize;
+}
 #categories {
   padding: 30px;
   min-height: calc(100vh - 64px);

@@ -78,6 +78,6 @@ $(document).ready(function() {
     .addTo(controller);
   new ScrollMagic.Scene({triggerElement: "#categories", duration: 250, tweenChanges: true})
     .setTween()
-    .addIndicators({name: "Categories Section"})
+    //.addIndicators({name: "Categories Section"})
     .addTo(controller);
 });

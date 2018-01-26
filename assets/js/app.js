@@ -156,16 +156,17 @@ function displayCategory(categoryIndex) {
     $card.children('.card-content').html($newTitle);
 
     if (cardIndex == 0) {
-      $card.css('border', '2px solid #1e3bd4');
-      $('#resultscard1').text(response.name);
+      $('#resultscard1').text(response.name + ":");
     } else if (cardIndex == 1) {
-      $card.css('border', '2px solid #b12525');
-      $('#resultscard2').text(response.name);
+      $('#resultscard2').text(response.name + ":");
     } else if (cardIndex == 2) {
-      $card.css('border', '2px solid #009e10');
-      $('#resultscard3').text(response.name);
+      $('#resultscard3').text(response.name + ":");
     }
   });
+
+  calculateVoteTotals();
+  updateVotes();
+  getBeerInfo(currentWinnerId);
 }
 function updateCategories() {
   console.log(categories);
