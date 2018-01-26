@@ -20,5 +20,5 @@ function loadFeatured(that) {
   currentCategoryIndex = parseInt($(that).data('category'));
   displayCategory(currentCategoryIndex);
   calculateVoteTotals();
-  getBeerInfo(currentWinnerId);
+  getBeerInfo(categories[currentCategoryIndex].featured);
 }
