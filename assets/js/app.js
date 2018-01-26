@@ -10,7 +10,6 @@ const categoryArray = ['dog', 'bear', 'witch', 'cat', 'devil', 'angel', 'city'];
 var candidateArray = [];
 var categories = [];
 var currentCategoryIndex = 0;
-var $cards = [];
 
 database.ref().once('value').then(function(snap) {
   if (snap.val() == null) {
