@@ -20,6 +20,7 @@ var featuredBeer = {
 };
 
 function getBeerInfo(beerID) {
+  console.log('Fetching new featured beer...');
   var queryURL = "http://api.brewerydb.com/v2//beer/";
   queryURL = queryURL + beerID + "?withBreweries=y&key=" + apikey;
   $.ajax({
@@ -46,15 +47,14 @@ function getBeerInfo(beerID) {
     featuredBeer.og = response.og;
     featuredBeer.label = response.labels.large;
 
+    console.log('Featured beer info fetched.');
     updateFeaturedBeer();
-
-    // TODO: Add category
-    //console.log(featuredBeer);
   });
 }
 
 function updateFeaturedBeer() {
-  //console.log(featuredBeer);
+  console.log('Updating featured beer info...');
+  // console.log(featuredBeer);
   $('#featured-name').text(featuredBeer.name);
   $('#featured-category').text(categoryArray[currentCategoryIndex]);
   $('#featured-brewery').text(featuredBeer.brewery);
@@ -124,4 +124,6 @@ function updateFeaturedBeer() {
   });
 
   initMap();
+
+  console.log('Featured beer info updated.');
 }

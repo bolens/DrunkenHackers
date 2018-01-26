@@ -17,7 +17,7 @@ function calculateVoteTotals(cardIndex) {
     votesId = votesId.beerThree.id;
   }
 
-  if (currentVotes > currentWinnerVotes) {
+  if (currentVotes >= currentWinnerVotes) {
     currentWinnerVotes = currentVotes;
     categories[currentCategoryIndex].featured = votesId;
   }
@@ -48,7 +48,7 @@ $(".card").on("click", function (e) {
   var beerObj = {};
   beerObj = categories[currentCategoryIndex];
 
-  console.log(beerObj);
+  // console.log(beerObj);
 
   if (selectedCard == 0) {
     beerObj.beerOne.votes = currentVotes;
