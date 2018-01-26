@@ -1,5 +1,4 @@
 var database = firebase.database();
-var selectedCard;
 var currentWinnerId;
 var currentWinnerVotes = 0;
 var voteTotal;
@@ -28,6 +27,7 @@ function calculateVoteTotals() {
       currentWinnerId = votesId;
     }
   });
+  updateVotes();
 }
 
 function pushVotes() {
@@ -54,18 +54,17 @@ function updateVotes() {
 }
 
 $(".card").on("click", function (e) {
-  // console.log($cards[$(this).data("card")]);
   cardsVotes[0] = categories[currentCategoryIndex].beerOne.votes;
   cardsVotes[1] = categories[currentCategoryIndex].beerTwo.votes;
   cardsVotes[2] = categories[currentCategoryIndex].beerThree.votes;
 
-  var currentVotes = parseInt(cardsVotes[$(this).data("card")]);
+  var selectedCard = parseInt($(this).data("card"));
+  var currentVotes = parseInt(cardsVotes[selectedCard]);
   currentVotes++;
-  // console.log(currentVotes);
-  selectedCard = parseInt($(this).data("card"));
+
   var beerObj = {};
   beerObj = categories[currentCategoryIndex];
-  // console.log(categories[currentCategoryIndex]);
+
   console.log(beerObj);
   if (selectedCard == 0) {
     beerObj.beerOne.votes = currentVotes;
@@ -74,9 +73,9 @@ $(".card").on("click", function (e) {
   } else if (selectedCard == 2) {
     beerObj.beerThree.votes = currentVotes;
   }
-  database.ref("beerCandidates/" + candidateArray[currentCategoryIndex]).update(beerObj);
+
   calculateVoteTotals();
-  updateVotes();
+
   // displayCategory(currentWinnerId);
   getBeerInfo(currentWinnerId);
   if (currentCategoryIndex < categoryArray.length) {

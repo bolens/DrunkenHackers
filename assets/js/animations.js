@@ -27,6 +27,13 @@ $(document).ready(function() {
       scrollTop: $("#voting").offset().top - 64
     }, 1000);
   });
+  $('#category-list').on('click', '.category', function(e) {
+    e.preventDefault();
+    loadFeatured(this);
+    $('html, body').animate({
+      scrollTop: $("#voting").offset().top - 64
+    }, 1000);
+  });
 
   // Function to hide intro title
   function hideTitle() {

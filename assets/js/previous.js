@@ -15,17 +15,9 @@ function renderPrevWinners() {
 
 renderPrevWinners();
 
-$('#category-list').on('click', '.category', function(e) {
-  e.preventDefault();
-  loadFeatured(this);
-  $('html, body').animate({
-    scrollTop: $("#voting").offset().top - 64
-  }, 1000);
-});
-
 function loadFeatured(that) {
   // console.log($(that));
-  currentCategoryIndex = $(that).data('category');
+  currentCategoryIndex = parseInt($(that).data('category'));
   displayCategory(currentCategoryIndex);
   calculateVoteTotals();
   getBeerInfo(currentWinnerId);

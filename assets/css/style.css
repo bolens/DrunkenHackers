@@ -103,11 +103,11 @@ p:last-of-type {
 }
 .overlay-logo:hover::before,
 .overlay-logo:focus::before {
-  // Add "To top"
+  /* Add "To top" */
 }
 .overlay-logo:hover::after,
 .overlay-logo:focus::after {
-  // Add arrow
+  /* Add arrow */
 }
 .overlay-logo img {
   width: 55px;

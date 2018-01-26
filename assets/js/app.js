@@ -12,40 +12,29 @@ var categories = [];
 var currentCategoryIndex = 0;
 var $cards = [];
 
-let labelsArray = [];
-let label = [];
+var labelsArray = [];
+var label = [];
 var currentCanditate;
 
 database.ref().once('value').then(function(snap) {
-  //console.log(snap.val());
   if (snap.val() == null) {
-    console.log('Firebase is empty, generating categories.');
+    console.log('Firebase is empty, generating categories...');
     buildCategories(categoryArray);
-    // getBeerFromCategories();
   } else {
-    console.log('Found firebase data, populating local variables.');
-    $.each(snap.val().beerCandidates, function(index, el) {
-      // console.log(this);
+    console.log('Found firebase data, populating local categories...');
+    $.each(snap.val().beerCandidates, function() {
       categories.push(this);
       candidateArray.push(this.uid);
-      // console.log(candidateArray);
     });
-    $cards[0] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerOne.votes;
-    $cards[1] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerTwo.votes;
-    $cards[2] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerThree.votes;
-    console.log($cards);
-    console.log('Firebase data was not populated, fetching data.');
+    console.log('Local categories populated.');
+    cardsVotes[0] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerOne.votes;
+    cardsVotes[1] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerTwo.votes;
+    cardsVotes[2] = snap.val().beerCandidates[candidateArray[currentCategoryIndex]].beerThree.votes;
+    // console.log(categories);
 
-    getBeerFromCategories();
-
-    console.log(categories);
+    displayCategory(currentCategoryIndex);
+    calculateVoteTotals();
   }
-}, function(errorObject) {
-  console.log("The read failed: " + errorObject.code);
-});
-
-database.ref().on('child_changed', function(snap) {
-
 }, function(errorObject) {
   console.log("The read failed: " + errorObject.code);
 });
@@ -78,11 +67,13 @@ function buildCategories(categoriesArray) {
     database.ref('beerCandidates/' + uid).set(newCategoryObj);
     candidateArray.push(uid);
   });
+  console.log('Categories generated.');
   getBeerFromCategories();
 }
 
 function getBeerFromCategories() {
-  var count = $(categories).length
+  console.log('Fetching beer category data...');
+  var count = $(categories).length;
   $(categories).each(function(categoryIndex) {
     var queryURL = "http://api.brewerydb.com/v2/search?withLocations=Y&q=" + categories[categoryIndex].category + "&type=beer&key=" + apikey;
     //console.log(queryURL);
@@ -121,6 +112,7 @@ function getBeerFromCategories() {
       categories[categoryIndex].lastPosition = 3;
 
       if (!--count) {
+        console.log('Beer category data fetched.');
         displayCategory(currentCategoryIndex);
         updateCategories();
       }
@@ -164,22 +156,13 @@ function displayCategory(categoryIndex) {
   });
 
   calculateVoteTotals();
-  updateVotes();
   getBeerInfo(currentWinnerId);
 }
 function updateCategories() {
-  console.log(categories);
+  console.log('Populating firebase data.');
   $(categories).each(function(categoryIndex, val) {
-    console.log("Category " + categoryIndex + ": ");
-    console.log(candidateArray[categoryIndex]);
-    console.log(this);
-
     database.ref('beerCandidates/' + candidateArray[categoryIndex]).update(this);
   });
   console.log('Firebase data populated.');
-  // database.ref().once('value').then(function(snap) {
-  //   console.log(snap.val());
-  // }, function(errorObject) {
-  //   console.log("The read failed: " + errorObject.code);
-  // });
+  console.log(categories);
 }
