@@ -6,7 +6,7 @@ jQuery.ajaxPrefilter(function(options) {
   }
 });
 var database = firebase.database();
-const categoryArray = ['dog', 'bear', 'witch', 'cat', 'devil', 'angel', 'city'];
+const categoryArray = ['dog', 'bear', 'witch', 'cat', 'devil', 'angel', 'city' , 'dark' , 'light' , 'American' , 'German' , 'Stone' , 'Mountain' , 'Strawberry' , 'Candy'];
 var candidateArray = [];
 var categories = [];
 var currentCategoryIndex = 0;
